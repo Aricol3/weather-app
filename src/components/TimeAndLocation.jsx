@@ -1,17 +1,18 @@
 import React from "react";
+import {formatToLocalTime} from "../services/weatherService";
 
-const TimeAndLocation = () => {
+const TimeAndLocation = ({weather: {localtime_epoch, tz_id, name, region}}) => {
     return (
         <div>
             <div className="flex items-center justify-center my-6">
                 <p className="text-white text-xl font-extra-light">
-                    Saturday, 24 December | Local time: 17:21
+                    {formatToLocalTime(localtime_epoch, tz_id)}
                 </p>
             </div>
 
             <div className="flex items-center justify-center my-3">
                 <p className="text-white text-3xl font-medium">
-                    Cluj-Napoca, RO
+                    {`${name}, ${region}`}
                 </p>
             </div>
         </div>
