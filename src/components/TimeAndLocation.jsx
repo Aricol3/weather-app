@@ -8,6 +8,12 @@ const TimeAndLocation = () => {
                     Saturday, 24 December | Local time: 17:21
                 </p>
             </div>
+
+            <div className="flex items-center justify-center my-3">
+                <p className="text-white text-3xl font-medium">
+                    Cluj-Napoca, RO
+                </p>
+            </div>
         </div>
     );
 }
