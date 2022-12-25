@@ -6,6 +6,7 @@ import TemperatureAndDetails from "./components/TemperatureAndDetails";
 import HourlyForecast from "./components/HourlyForecast";
 import getFormattedWeatherData from "./services/weatherService";
 import {useEffect, useState} from "react";
+import DailyForecast from "./components/DailyForecast";
 
 function App() {
     const [query, setQuery] = useState('cluj-napoca')
@@ -32,7 +33,7 @@ function App() {
                     <TimeAndLocation weather={weather}/>
                     <TemperatureAndDetails weather={weather}/>
                     <HourlyForecast weather={weather}/>
-                    {/*<HourlyForecast title="daily forecast"/>*/}
+                    <DailyForecast weather={weather}/>
                 </div>
             )}
         </div>

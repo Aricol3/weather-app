@@ -10,7 +10,7 @@ import {
 } from "@iconscout/react-unicons";
 import {DateTime} from "luxon";
 
-const TemperatureAndDetails = ({weather:{temp_c,feelslike_c, humidity, wind_kph, forecastday}}) => {
+const TemperatureAndDetails = ({weather: {temp_c, feelslike_c, humidity, wind_kph, condition, forecastday}}) => {
 
     let sunrise = DateTime.fromFormat(`${forecastday[0]['astro']['sunrise']}`, 'hh:mm a').toFormat('HH:mm');
     let sunset = DateTime.fromFormat(`${forecastday[0]['astro']['sunset']}`, 'hh:mm a').toFormat('HH:mm');
@@ -20,11 +20,11 @@ const TemperatureAndDetails = ({weather:{temp_c,feelslike_c, humidity, wind_kph,
     return (
         <div>
             <div className="flex items-center justify-center py-6 text-xl text-cyan-300">
-                <p>Cloudy</p>
+                <p>{condition['text']}</p>
             </div>
 
             <div className="flex flex-row items-center justify-evenly space-x-2 text-white py-3">
-                <img src={forecastday[0]['day']['condition']['icon']} alt="current weather logo" className="w-20"/>
+                <img src={condition['icon']} alt="current weather logo" className="w-20"/>
 
                 <p className="text-5xl">
                     {`${temp_c.toFixed()}°C`}
@@ -64,8 +64,7 @@ const TemperatureAndDetails = ({weather:{temp_c,feelslike_c, humidity, wind_kph,
                 <p className="font-light">|</p>
 
                 <UilArrowDown/>
-                <p className="font-light">Low: <span className="font-medium ml-1">-{`${minTemp.toFixed()}°C`}</span></p>
-                <p className="font-light">|</p>
+                <p className="font-light">Low: <span className="font-medium ml-1">{`${minTemp.toFixed()}°C`}</span></p>
             </div>
         </div>
     );

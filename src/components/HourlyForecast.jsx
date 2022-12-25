@@ -16,7 +16,7 @@ const HourlyForecast = ({weather: {forecastday}}) => {
                         if (index % 3 === 0) {
                             return (
                                 <div className="flex flex-col items-center justify-center">
-                                    <p className="font-light text-sm">{DateTime.fromSeconds(hourlyWeather['time_epoch']).toFormat('HH:mm')}</p>
+                                    <p className="font-medium text-sm">{DateTime.fromSeconds(hourlyWeather['time_epoch']).toFormat('HH:mm')}</p>
                                     <img src={hourlyWeather['condition']['icon']} className="w-12 my-1" alt="weather logo"/>
                                     <p className="font-medium">{`${hourlyWeather['temp_c'].toFixed()}°C`}</p>
                                 </div>
