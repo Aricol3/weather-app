@@ -13,11 +13,11 @@ const formatCurrentWeather = (data) => {
     const {
         location: {name, region, country, lat, lon, tz_id, localtime_epoch},
         current: {temp_c, feelslike_c, humidity, wind_kph},
-
+        forecast: {forecastday}
     } = data
 
 
-    return {name, region, country, lat, lon, tz_id, localtime_epoch, temp_c, feelslike_c, humidity, wind_kph}
+    return {name, region, country, lat, lon, tz_id, localtime_epoch, temp_c, feelslike_c, humidity, wind_kph, forecastday}
 }
 
 const getFormattedWeatherData = async (searchParams) => {

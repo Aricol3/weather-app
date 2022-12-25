@@ -8,8 +8,15 @@ import {
     UilSun,
     UilSunset,
 } from "@iconscout/react-unicons";
+import {DateTime} from "luxon";
 
-const TemperatureAndDetails = ({weather:{temp_c,feelslike_c, humidity, wind_kph}}) => {
+const TemperatureAndDetails = ({weather:{temp_c,feelslike_c, humidity, wind_kph, forecastday}}) => {
+
+    let sunrise = DateTime.fromFormat(`${forecastday[0]['astro']['sunrise']}`, 'hh:mm a').toFormat('HH:mm');
+    let sunset = DateTime.fromFormat(`${forecastday[0]['astro']['sunset']}`, 'hh:mm a').toFormat('HH:mm');
+    let maxTemp = forecastday[0]['day']['maxtemp_c'];
+    let minTemp = forecastday[0]['day']['mintemp_c'];
+
     return (
         <div>
             <div className="flex items-center justify-center py-6 text-xl text-cyan-300">
@@ -17,7 +24,7 @@ const TemperatureAndDetails = ({weather:{temp_c,feelslike_c, humidity, wind_kph}
             </div>
 
             <div className="flex flex-row items-center justify-evenly space-x-2 text-white py-3">
-                <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="weather image" className="w-20"/>
+                <img src={forecastday[0]['day']['condition']['icon']} alt="current weather logo" className="w-20"/>
 
                 <p className="text-5xl">
                     {`${temp_c.toFixed()}°C`}
@@ -45,19 +52,19 @@ const TemperatureAndDetails = ({weather:{temp_c,feelslike_c, humidity, wind_kph}
 
             <div className="flex flex-row items-center justify-center space-x-2 text-white text-sm py-3">
                 <UilSun/>
-                <p className="font-light">Rise: <span className="font-medium ml-1">06:12</span></p>
+                <p className="font-light">Sunrise: <span className="font-medium ml-2">{sunrise}</span></p>
                 <p className="font-light">|</p>
 
                 <UilSunset/>
-                <p className="font-light">Set: <span className="font-medium ml-1">17:10</span></p>
+                <p className="font-light">Sunset: <span className="font-medium ml-1">{sunset}</span></p>
                 <p className="font-light">|</p>
 
                 <UilArrowUp/>
-                <p className="font-light">High: <span className="font-medium ml-1">11°C</span></p>
+                <p className="font-light">High: <span className="font-medium ml-1">{`${maxTemp.toFixed()}°C`}</span></p>
                 <p className="font-light">|</p>
 
                 <UilArrowDown/>
-                <p className="font-light">Low: <span className="font-medium ml-1">-3°C</span></p>
+                <p className="font-light">Low: <span className="font-medium ml-1">-{`${minTemp.toFixed()}°C`}</span></p>
                 <p className="font-light">|</p>
             </div>
         </div>

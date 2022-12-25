@@ -3,7 +3,7 @@ import TopButtons from "./components/TopButtons";
 import SearchBar from "./components/SearchBar"
 import TimeAndLocation from "./components/TimeAndLocation";
 import TemperatureAndDetails from "./components/TemperatureAndDetails";
-import Forecast from "./components/Forecast";
+import HourlyForecast from "./components/HourlyForecast";
 import getFormattedWeatherData from "./services/weatherService";
 import {useEffect, useState} from "react";
 
@@ -31,8 +31,8 @@ function App() {
                 <div>
                     <TimeAndLocation weather={weather}/>
                     <TemperatureAndDetails weather={weather}/>
-                    <Forecast title="hourly forecast"/>
-                    <Forecast title="daily forecast"/>
+                    <HourlyForecast weather={weather}/>
+                    {/*<HourlyForecast title="daily forecast"/>*/}
                 </div>
             )}
         </div>
